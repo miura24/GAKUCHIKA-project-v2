@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#1a1a2e" />
+  <meta name="theme-color" content="#007B43" />
   <meta name="description" content="漫画研究会テク班 - 活動のお知らせ" />
 
   <!-- PWA manifest -->
@@ -11,30 +11,34 @@
 
   <!-- iOS PWA support -->
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="テク班" />
   <link rel="apple-touch-icon" href="icons/icon-192.png" />
 
   <title>テク班 活動お知らせ</title>
 
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+
     /* ── Design Tokens ───────────────────────────────────────── */
     :root {
-      --bg:          #0f0f1a;
-      --surface:     #1a1a2e;
-      --panel:       #22223b;
-      --ink:         #e8e0d4;
-      --ink-muted:   #9a9287;
-      --accent:      #c9a84c;
-      --accent-dim:  #7a6430;
-      --red:         #c94c4c;
-      --line:        rgba(201,168,76,.18);
+      --green:       #007B43;
+      --green-light: #e8f4ee;
+      --green-mid:   #c2dfd0;
+      --green-dark:  #005c32;
+      --bg:          #f7faf8;
+      --surface:     #ffffff;
+      --panel:       #f0f7f3;
+      --ink:         #1a2e24;
+      --ink-muted:   #6b8070;
+      --red:         #d94f4f;
+      --line:        #ddeae3;
 
-      --font-display: 'Shippori Mincho', 'Noto Serif JP', serif;
-      --font-body:    'IBM Plex Sans JP', 'Noto Sans JP', sans-serif;
-      --font-mono:    'IBM Plex Mono', monospace;
+      --font-body: 'Noto Sans JP', 'Hiragino Sans', sans-serif;
 
-      --radius:  6px;
+      --radius:  12px;
+      --radius-sm: 8px;
+      --shadow:  0 2px 12px rgba(0,123,67,.08);
       --trans:   .18s ease;
     }
 
@@ -48,16 +52,7 @@
       font-size: 15px;
       line-height: 1.7;
       min-height: 100dvh;
-      background-image: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 31px,
-        rgba(255,255,255,.025) 31px,
-        rgba(255,255,255,.025) 32px
-      );
     }
-
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;500&family=IBM+Plex+Mono:wght@400;600&display=swap');
 
     /* ── Layout ──────────────────────────────────────────────── */
     .page-wrap {
@@ -70,45 +65,44 @@
     header {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 28px 0 24px;
-      border-bottom: 1px solid var(--line);
+      gap: 14px;
+      padding: 32px 0 24px;
+      border-bottom: 2px solid var(--green);
     }
     .header-emblem {
-      width: 44px;
-      height: 44px;
-      border: 2px solid var(--accent);
+      width: 48px;
+      height: 48px;
+      background: var(--green);
       border-radius: 50%;
       display: grid;
       place-items: center;
-      font-family: var(--font-display);
-      font-size: 18px;
-      color: var(--accent);
+      font-size: 20px;
+      color: #fff;
       flex-shrink: 0;
-      box-shadow: 0 0 0 3px var(--surface), 0 0 0 4px var(--accent-dim);
     }
     .header-text small {
       display: block;
-      font-size: 10px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: .08em;
       color: var(--ink-muted);
+      margin-bottom: 2px;
     }
     .header-text h1 {
-      font-family: var(--font-display);
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 700;
-      letter-spacing: .04em;
+      letter-spacing: .02em;
       color: var(--ink);
     }
 
     /* ── Section titles ──────────────────────────────────────── */
     .section-label {
-      font-size: 10px;
-      letter-spacing: .16em;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
       text-transform: uppercase;
-      color: var(--accent);
-      margin: 32px 0 12px;
+      color: var(--green);
+      margin: 28px 0 10px;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -127,7 +121,8 @@
       border-radius: var(--radius);
       padding: 20px;
       display: grid;
-      gap: 14px;
+      gap: 16px;
+      box-shadow: var(--shadow);
     }
     .activity-card .loading-placeholder {
       color: var(--ink-muted);
@@ -138,27 +133,29 @@
     .info-row {
       display: flex;
       align-items: flex-start;
-      gap: 12px;
+      gap: 14px;
     }
     .info-icon {
-      width: 28px;
-      height: 28px;
-      background: var(--panel);
-      border-radius: 4px;
+      width: 36px;
+      height: 36px;
+      background: var(--green-light);
+      border-radius: var(--radius-sm);
       display: grid;
       place-items: center;
-      font-size: 14px;
+      font-size: 16px;
       flex-shrink: 0;
     }
     .info-body small {
       display: block;
       font-size: 11px;
+      font-weight: 400;
       color: var(--ink-muted);
       margin-bottom: 2px;
     }
     .info-body strong {
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 500;
+      color: var(--ink);
     }
 
     /* ── 資料画像 ──────────────────────────────────────────────── */
@@ -170,6 +167,7 @@
       background: var(--panel);
       min-height: 180px;
       object-fit: contain;
+      box-shadow: var(--shadow);
     }
     .material-img.hidden { display: none; }
 
@@ -179,12 +177,13 @@
       border: 1px solid var(--line);
       border-radius: var(--radius);
       padding: 20px;
+      box-shadow: var(--shadow);
     }
     .notify-card p {
       font-size: 13px;
       color: var(--ink-muted);
       margin-bottom: 16px;
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
     /* ── Button ──────────────────────────────────────────────── */
@@ -192,35 +191,37 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 10px 20px;
-      border-radius: var(--radius);
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
       font-size: 14px;
       font-weight: 500;
       cursor: pointer;
       border: none;
-      transition: opacity var(--trans), transform var(--trans);
+      transition: opacity var(--trans), transform var(--trans), background var(--trans);
       font-family: var(--font-body);
       width: 100%;
       justify-content: center;
+      letter-spacing: .02em;
     }
-    .btn:active { transform: scale(.97); }
+    .btn:active { transform: scale(.98); }
     .btn-primary {
-      background: var(--accent);
-      color: #0f0f1a;
+      background: var(--green);
+      color: #fff;
     }
-    .btn-primary:hover { opacity: .88; }
+    .btn-primary:hover { background: var(--green-dark); }
     .btn-primary:disabled {
-      background: var(--accent-dim);
+      background: var(--green-mid);
       cursor: not-allowed;
-      opacity: .6;
+      color: var(--green-dark);
+      opacity: .7;
     }
     .btn-danger {
       background: transparent;
       color: var(--red);
-      border: 1px solid var(--red);
+      border: 1px solid rgba(217,79,79,.4);
       margin-top: 10px;
     }
-    .btn-danger:hover { background: rgba(201,76,76,.1); }
+    .btn-danger:hover { background: rgba(217,79,79,.06); }
 
     /* ── Status badge ────────────────────────────────────────── */
     .status-badge {
@@ -228,7 +229,8 @@
       align-items: center;
       gap: 6px;
       font-size: 12px;
-      padding: 4px 10px;
+      font-weight: 500;
+      padding: 4px 12px;
       border-radius: 20px;
       margin-bottom: 14px;
     }
@@ -237,11 +239,11 @@
       height: 7px;
       border-radius: 50%;
     }
-    .status-badge.enabled  { background: rgba(201,168,76,.12); color: var(--accent); }
-    .status-badge.enabled  .dot { background: var(--accent); }
-    .status-badge.disabled { background: rgba(154,146,135,.12); color: var(--ink-muted); }
-    .status-badge.disabled .dot { background: var(--ink-muted); }
-    .status-badge.blocked  { background: rgba(201,76,76,.12); color: var(--red); }
+    .status-badge.enabled  { background: var(--green-light); color: var(--green-dark); }
+    .status-badge.enabled  .dot { background: var(--green); }
+    .status-badge.disabled { background: #f0f0f0; color: #888; }
+    .status-badge.disabled .dot { background: #aaa; }
+    .status-badge.blocked  { background: rgba(217,79,79,.1); color: var(--red); }
     .status-badge.blocked  .dot { background: var(--red); }
 
     /* ── Toast ───────────────────────────────────────────────── */
@@ -250,17 +252,18 @@
       bottom: 24px;
       left: 50%;
       transform: translateX(-50%) translateY(12px);
-      background: var(--panel);
-      color: var(--ink);
-      border: 1px solid var(--line);
+      background: var(--ink);
+      color: #fff;
       border-radius: 40px;
-      padding: 10px 20px;
+      padding: 10px 22px;
       font-size: 13px;
+      font-weight: 500;
       opacity: 0;
       pointer-events: none;
       transition: opacity .2s, transform .2s;
       white-space: nowrap;
       z-index: 100;
+      box-shadow: 0 4px 16px rgba(0,0,0,.18);
     }
     #toast.show {
       opacity: 1;
@@ -269,7 +272,7 @@
 
     /* ── Footer ──────────────────────────────────────────────── */
     footer {
-      margin-top: 40px;
+      margin-top: 48px;
       padding-top: 20px;
       border-top: 1px solid var(--line);
       font-size: 11px;
@@ -330,7 +333,7 @@
   <p class="section-label">今週の資料</p>
   <img id="materialImg" class="material-img hidden"
        alt="今週の練習資料" loading="lazy" />
-  <div id="materialLoading" style="color:var(--ink-muted);font-size:13px;padding:8px 0;">
+  <div id="materialLoading" style="color:var(--ink-muted);font-size:13px;padding:10px 0;text-align:center;">
     読み込み中…
   </div>
 
