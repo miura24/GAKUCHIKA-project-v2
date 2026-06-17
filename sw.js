@@ -60,7 +60,7 @@ messaging.onBackgroundMessage((payload) => {
 });
 
 // ── キャッシュ設定 ─────────────────────────────────────────────────
-const CACHE_NAME = 'tekuban-v2'; // FCM対応に更新したためバージョンを上げる
+const CACHE_NAME = 'tekuban-v3'; // デザイン更新のためバージョンを上げる
 const CACHE_URLS = [
   './',
   './index.html',
@@ -71,7 +71,7 @@ const CACHE_URLS = [
 
 // ── インストール ───────────────────────────────────────────────────
 self.addEventListener('install', (event) => {
-  console.log('[SW] install (v2)');
+  console.log('[SW] install (v3)');
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll(CACHE_URLS))
   );
@@ -80,7 +80,7 @@ self.addEventListener('install', (event) => {
 
 // ── アクティベート ────────────────────────────────────────────────
 self.addEventListener('activate', (event) => {
-  console.log('[SW] activate (v2)');
+  console.log('[SW] activate (v3)');
   event.waitUntil(
     caches.keys().then((keys) =>
       Promise.all(
