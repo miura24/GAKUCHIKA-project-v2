@@ -45,18 +45,18 @@ messaging.onBackgroundMessage((payload) => {
   const body  = payload.notification?.body  || '今週の活動情報が更新されました。タップして確認してください。';
   const icon  = payload.notification?.icon  || './icons/icon-192.png';
 
-  self.registration.showNotification(title, {
-    body,
-    icon,
-    badge:   './icons/icon-192.png',
-    tag:     'tekuban-activity',  // 同タグの通知は上書き（重複防止）
-    renotify: false,
-    vibrate: [200, 100, 200],
-    data: {
+ // self.registration.showNotification(title, {
+ //  body,
+ // icon,
+ //  badge:   './icons/icon-192.png',
+ //   tag:     'tekuban-activity',  // 同タグの通知は上書き（重複防止）
+ //   renotify: false,
+ //   vibrate: [200, 100, 200],
+ //   data: {
       // 通知クリック時の遷移先URL
-      url: self.location.origin + self.registration.scope,
-    },
-  });
+ //     url: self.location.origin + self.registration.scope,
+ //   },
+ // });
 });
 
 // ── キャッシュ設定 ─────────────────────────────────────────────────
